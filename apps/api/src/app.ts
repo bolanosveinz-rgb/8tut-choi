@@ -5,6 +5,12 @@ export function createApp() {
   const app = express();
 
   app.disable("x-powered-by");
+  app.get("/", (_request, response) => {
+    response.json({ status: "ok", service: "AssistRep API" });
+  });
+  app.get("/health", (_request, response) => {
+    response.json({ status: "ok" });
+  });
   app.get("/api/v1/health", (_request, response) => {
     const body = HealthResponseSchema.parse({
       status: "ok",
